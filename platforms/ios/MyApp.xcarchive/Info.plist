@@ -5,9 +5,9 @@
 	<key>ApplicationProperties</key>
 	<dict>
 		<key>ApplicationPath</key>
-		<string>Applications/MyApp.app</string>
+		<string>Applications/TestHttp.app</string>
 		<key>CFBundleIdentifier</key>
-		<string>io.ionic.starter</string>
+		<string>TestHttp</string>
 		<key>CFBundleShortVersionString</key>
 		<string>0.0.1</string>
 		<key>CFBundleVersion</key>
@@ -20,7 +20,7 @@
 	<key>ArchiveVersion</key>
 	<integer>2</integer>
 	<key>CreationDate</key>
-	<date>2020-09-28T12:40:04Z</date>
+	<date>2020-09-30T08:30:54Z</date>
 	<key>Name</key>
 	<string>MyApp</string>
 	<key>SchemeName</key>
