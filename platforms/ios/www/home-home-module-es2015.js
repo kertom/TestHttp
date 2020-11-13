@@ -137,8 +137,6 @@ let HomePage = class HomePage {
         this.fileTransfer = fileTransfer;
         this.httpClient = httpClient;
     }
-    ngOnInit() {
-    }
     getTextOfFile(currentUrl) {
         //currentUrl=currentUrl.replace("/private","file://");
         console.log('currentUrl= ' + currentUrl);
@@ -176,11 +174,30 @@ let HomePage = class HomePage {
                 console.log("ending2= ");
             }
             else {
-                this.getTextOfFile(uri);
+                this.downloadAndOpenPdf(uri);
             }
         })
             .catch(err => console.log('Error0=', err));
         console.log('hei5');
+    }
+    downloadAndOpenPdf(currentUrl) {
+        console.log('download pdf1');
+        let downloadUrl = currentUrl; //'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
+        let path = this.file.dataDirectory;
+        const transfer = this.fileTransfer.create();
+        //const filePath = this.file.dataDirectory + fileName; 
+        //currentUrl=currentUrl.replace("/private","file://");
+        var url = encodeURI(currentUrl);
+        this._http.downloadFile(currentUrl, {}, {}, path + 'myfile.pdf').
+            then(response => {
+            // prints 200
+            console.log('success block...', response);
+        }).catch(err => {
+            // prints 403
+            console.log('error block ... ', err.status);
+            // prints Permission denied
+            console.log('error block ... ', err.error);
+        });
     }
 };
 HomePage.ctorParameters = () => [

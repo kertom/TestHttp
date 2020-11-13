@@ -253,9 +253,6 @@
         }
 
         _createClass(HomePage, [{
-          key: "ngOnInit",
-          value: function ngOnInit() {}
-        }, {
           key: "getTextOfFile",
           value: function getTextOfFile(currentUrl) {
             //currentUrl=currentUrl.replace("/private","file://");
@@ -299,12 +296,34 @@
                 //this.downloadAndOpenPdf();
                 console.log("ending2= ");
               } else {
-                _this.getTextOfFile(uri);
+                _this.downloadAndOpenPdf(uri);
               }
             })["catch"](function (err) {
               return console.log('Error0=', err);
             });
             console.log('hei5');
+          }
+        }, {
+          key: "downloadAndOpenPdf",
+          value: function downloadAndOpenPdf(currentUrl) {
+            console.log('download pdf1');
+            var downloadUrl = currentUrl; //'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
+
+            var path = this.file.dataDirectory;
+            var transfer = this.fileTransfer.create(); //const filePath = this.file.dataDirectory + fileName; 
+            //currentUrl=currentUrl.replace("/private","file://");
+
+            var url = encodeURI(currentUrl);
+
+            this._http.downloadFile(currentUrl, {}, {}, path + 'myfile.pdf').then(function (response) {
+              // prints 200
+              console.log('success block...', response);
+            })["catch"](function (err) {
+              // prints 403
+              console.log('error block ... ', err.status); // prints Permission denied
+
+              console.log('error block ... ', err.error);
+            });
           }
         }]);
 
