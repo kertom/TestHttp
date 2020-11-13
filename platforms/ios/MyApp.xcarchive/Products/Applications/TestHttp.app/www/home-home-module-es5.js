@@ -222,13 +222,34 @@
       var _ionic_native_file_picker_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @ionic-native/file-picker/ngx */
       "./node_modules/@ionic-native/file-picker/__ivy_ngcc__/ngx/index.js");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! @angular/common/http */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+      /* harmony import */
+
+
+      var _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! @ionic-native/file/ngx */
+      "./node_modules/@ionic-native/file/__ivy_ngcc__/ngx/index.js");
+      /* harmony import */
+
+
+      var _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! @ionic-native/file-transfer/ngx */
+      "./node_modules/@ionic-native/file-transfer/__ivy_ngcc__/ngx/index.js");
 
       var HomePage = /*#__PURE__*/function () {
-        function HomePage(_http, filePicker) {
+        function HomePage(_http, filePicker, file, fileTransfer, httpClient) {
           _classCallCheck(this, HomePage);
 
           this._http = _http;
           this.filePicker = filePicker;
+          this.file = file;
+          this.fileTransfer = fileTransfer;
+          this.httpClient = httpClient;
         }
 
         _createClass(HomePage, [{
@@ -238,48 +259,29 @@
           key: "getTextOfFile",
           value: function getTextOfFile(currentUrl) {
             //currentUrl=currentUrl.replace("/private","file://");
-            console.log('currentUrl= ' + currentUrl);
-            var path = currentUrl.substring(0, currentUrl.lastIndexOf('/'));
+            console.log('currentUrl= ' + currentUrl); //let path = currentUrl.substring(0, currentUrl.lastIndexOf('/'));
+
             var file = currentUrl.substring(currentUrl.lastIndexOf('/') + 1, currentUrl.length);
-            console.log('hei1 currentUrl= ' + currentUrl);
-            console.log('hei3 path= ' + path);
+            console.log('hei1 currentUrl= ' + currentUrl); //console.log('hei3 path= '+path);
 
-            this._http.downloadFile('https://google.com/', {
-              id: '12',
-              message: 'test'
-            }, {
-              Authorization: 'OAuth2: token'
-            }, 'file:///somepicture.jpg').then(function (response) {
+            console.log('download pdf1');
+            var downloadUrl = currentUrl; //'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
+
+            var path = this.file.dataDirectory; //const transfer = this.fileTransfer.create();
+            //const filePath = this.file.dataDirectory + fileName; 
+            //currentUrl=currentUrl.replace("/private","file://");
+
+            var url = encodeURI(currentUrl);
+
+            this._http.downloadFile(currentUrl, {}, {}, path + 'myfile.pdf').then(function (response) {
               // prints 200
-              console.log('response status correct= ' + response.status);
-            })["catch"](function (response) {
+              console.log('success block...', response);
+            })["catch"](function (err) {
               // prints 403
-              console.log('response status error= ' + response.status); // prints Permission denied
+              console.log('error block ... ', err.status); // prints Permission denied
 
-              console.log('response error= ' + response.error);
-            }); //this._http.get(currentUrl,
-            //'file:///var/mobile/Containers/Data/Application/56E4D9F6-EC77-421E-9D7B-4AA2C969C3A3/tmp/DysEditor-Inbox/testdoc2.rtf',
-
-            /*this._http.sendRequest(currentUrl,
-            {
-            method: 'post',
-            data: { id: 12, message: 'test' },
-            headers: { Authorization: 'OAuth2: token' },
-            timeout: 5000
-            }
-            )
-            .then(response => {
-            // prints 200
-            console.log(response.status);
-            })
-            .catch(response => {
-            // prints 403
-            console.log(response.status);
-            
-            // prints Permission denied
-            console.log(response.error);
-            });*/
-
+              console.log('error block ... ', err.error);
+            });
 
             console.log('hei4');
           }
@@ -314,6 +316,12 @@
           type: _ionic_native_http_ngx__WEBPACK_IMPORTED_MODULE_2__["HTTP"]
         }, {
           type: _ionic_native_file_picker_ngx__WEBPACK_IMPORTED_MODULE_3__["IOSFilePicker"]
+        }, {
+          type: _ionic_native_file_ngx__WEBPACK_IMPORTED_MODULE_5__["File"]
+        }, {
+          type: _ionic_native_file_transfer_ngx__WEBPACK_IMPORTED_MODULE_6__["FileTransfer"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
         }];
       };
 
