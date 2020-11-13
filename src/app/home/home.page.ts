@@ -45,16 +45,30 @@ downloadPdf(currentUrl) {
   let path = this.file.dataDirectory;
   const transfer = this.fileTransfer.create();
   var url = encodeURI(currentUrl);
-  this._http.downloadFile(currentUrl, {}, {},path + 'myfile.pdf').
-  then(
-    response => {
-    // prints 200
-    console.log('success block...', response);
- }).catch(err => {
-     // prints 403
-     console.log('error block ... ', err.status);
-     // prints Permission denied
-     console.log('error block ... ', err.error);
- });
+  this._http.downloadFile(currentUrl, {}, path + 'myfile.pdf', function(entry) {
+    entry.file(function (file) {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            console.log("Successful file read: " + this.result);
+            var blob = new Blob([new Uint8Array(this.result)], { type: "application/pdf" });
+        };
+        reader.readAsArrayBuffer(file);
+    }, function(err) {
+        console.log(err);
+    });
+}).
+
+
+then(
+  response => {
+  // prints 200
+  console.log('success block...', response);
+}).catch(err => {
+   // prints 403
+   console.log('error block ... ', err.status);
+   // prints Permission denied
+   console.log('error block ... ', err.error);
+});
+
 }
 }
