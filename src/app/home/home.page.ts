@@ -40,35 +40,29 @@ chooseFile(){
   console.log('hei5');
 }
 //here we download the chosen pdf file.
-downloadPdf(currentUrl) { 
+downloadAndOpenPdf(currentUrl) { 
+  console.log('download pdf1');
   let downloadUrl =currentUrl;//'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
   let path = this.file.dataDirectory;
   const transfer = this.fileTransfer.create();
+  //const filePath = this.file.dataDirectory + fileName; 
+  //currentUrl=currentUrl.replace("/private","file://");
   var url = encodeURI(currentUrl);
-  this._http.downloadFile(currentUrl, {}, path + 'myfile.pdf', function(entry) {
-    entry.file(function (file) {
-        var reader = new FileReader();
-        reader.onloadend = function() {
-            console.log("Successful file read: " + this.result);
-            var blob = new Blob([new Uint8Array(this.result)], { type: "application/pdf" });
-        };
-        reader.readAsArrayBuffer(file);
-    }, function(err) {
-        console.log(err);
-    });
-}).
-
-
-then(
-  response => {
-  // prints 200
-  console.log('success block...', response);
-}).catch(err => {
-   // prints 403
-   console.log('error block ... ', err.status);
-   // prints Permission denied
-   console.log('error block ... ', err.error);
-});
-
+  console.log('this._http= '+this._http);
+  this._http.downloadFile(currentUrl, {}, path + 'myfile.pdf', 
+  ''+function(entry) {
+  entry.file(function (file) {
+  var reader = new FileReader();
+  reader.onloadend = function() {
+  console.log('this= '+this);
+  console.log("Successful file read: " + this.result);
+  var blob = new Blob(new Uint8Array(reader.result), 
+  { type: "application/pdf" });
+  };
+  console.log('hei1');
+  reader.readAsArrayBuffer(file);
+  }, function(err) {
+  console.log(err);
+  })});
 }
 }
