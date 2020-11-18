@@ -49,7 +49,7 @@ chooseFile(){
   .catch(err => console.log('Error0=', err));
   console.log('hei5');
 }
-//here we download the chosen pdf file.
+
 //1st approach
 downloadAndRead(currentUrl) { 
   ////var/mobile/Containers/Data/Application
@@ -76,12 +76,13 @@ downloadAndRead(currentUrl) {
 downloadAndRead2(dropBoxUrl) {
     console.log('IN READ MODE. Reading file');
     //dropBoxUrl=dropBoxUrl.replace("/private","file://");
-    
+    console.log('dropboxurl= '+dropBoxUrl);
     this.oRequest.open('GET', dropBoxUrl, false);//this.sURL
     var _this = this;
     this.oRequest.onreadystatechange = function(oEvent){  
       console.log('request status= '+_this.oRequest.readyState);
       if (_this.oRequest.readyState === 4) {
+        console.log('_this.oRequest.status= '+_this.oRequest.status);
         if (_this.oRequest.status === 200) {
           console.log('Success= '+_this.oRequest.responseText);           // This is the document contents
         } else {
