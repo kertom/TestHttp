@@ -130,74 +130,84 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let HomePage = class HomePage {
+    //console.clear();
+    //console.log('Running...');
     constructor(_http, filePicker, file, fileTransfer, httpClient) {
         this._http = _http;
         this.filePicker = filePicker;
         this.file = file;
         this.fileTransfer = fileTransfer;
         this.httpClient = httpClient;
+        this.sURL = 'https://dl.dropboxusercontent.com/s/iaxtm7efi73arud/dummy.pdf?dl=0'; // Normal dropbox.com domain would give CORS error
+        this.oRequest = new XMLHttpRequest();
+        this.silentDownload = false; // silentDownload hides link and clicks without user input
+        this.saveMode = true; // toggles between save and read functions
     }
-    getTextOfFile(currentUrl) {
-        //currentUrl=currentUrl.replace("/private","file://");
-        console.log('currentUrl= ' + currentUrl);
-        //let path = currentUrl.substring(0, currentUrl.lastIndexOf('/'));
-        let file = currentUrl.substring(currentUrl.lastIndexOf('/') + 1, currentUrl.length);
-        console.log('hei1 currentUrl= ' + currentUrl);
-        //console.log('hei3 path= '+path);
-        console.log('download pdf1');
-        let downloadUrl = currentUrl; //'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
-        let path = this.file.dataDirectory;
-        //const transfer = this.fileTransfer.create();
-        //const filePath = this.file.dataDirectory + fileName; 
-        //currentUrl=currentUrl.replace("/private","file://");
-        var url = encodeURI(currentUrl);
-        this._http.downloadFile(currentUrl, {}, {}, path + 'myfile.pdf').
-            then(response => {
-            // prints 200
-            console.log('success block...', response);
-        }).catch(err => {
-            // prints 403
-            console.log('error block ... ', err.status);
-            // prints Permission denied
-            console.log('error block ... ', err.error);
-        });
-        console.log('hei4');
-    }
+    //here we choose a file from the file picker
     chooseFile() {
         this.filePicker.pickFile()
             .then(uri => {
             console.log("uri= " + uri);
             var ending = uri.substring(uri.length - 3, 3);
             console.log("ending= " + ending);
+            //if it is a pdf file ,then we download it
             if (ending == 'pdf') {
                 //this.downloadAndOpenPdf();
                 console.log("ending2= ");
             }
             else {
-                this.downloadAndOpenPdf(uri);
+                this.downloadAndRead(uri);
             }
         })
             .catch(err => console.log('Error0=', err));
         console.log('hei5');
     }
-    downloadAndOpenPdf(currentUrl) {
-        console.log('download pdf1');
+    //here we download the chosen pdf file.
+    //1st approach
+    downloadAndRead(currentUrl) {
+        ////var/mobile/Containers/Data/Application
+        //currentUrl=currentUrl.
+        //replace("/private","file://");//file://
+        console.log('download pdf1 currentUrl= ' + currentUrl);
+        //currentUrl='file:///var/containers/bundle/Applications/var/mobile/Containers/Data/Application/'+
+        //'B7C41B3B-759E-477F-997B-CA0BE4A41D1C/AppData/tmp/DysEditor-Inbox/'+
+        //'myfile.pdf';
+        //currentUrl=this.sURL;
         let downloadUrl = currentUrl; //'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
         let path = this.file.dataDirectory;
+        console.log('path2= ' + path);
         const transfer = this.fileTransfer.create();
         //const filePath = this.file.dataDirectory + fileName; 
         //currentUrl=currentUrl.replace("/private","file://");
         var url = encodeURI(currentUrl);
-        this._http.downloadFile(currentUrl, {}, {}, path + 'myfile.pdf').
-            then(response => {
-            // prints 200
-            console.log('success block...', response);
-        }).catch(err => {
-            // prints 403
-            console.log('error block ... ', err.status);
-            // prints Permission denied
-            console.log('error block ... ', err.error);
-        });
+        console.log('this._http= ' + this._http);
+        this.downloadAndRead2(downloadUrl);
+    }
+    downloadAndRead2(dropBoxUrl) {
+        console.log('IN READ MODE. Reading file');
+        //dropBoxUrl=dropBoxUrl.replace("/private","file://");
+        this.oRequest.open('GET', dropBoxUrl, false); //this.sURL
+        var _this = this;
+        this.oRequest.onreadystatechange = function (oEvent) {
+            console.log('request status= ' + _this.oRequest.readyState);
+            if (_this.oRequest.readyState === 4) {
+                if (_this.oRequest.status === 200) {
+                    console.log('Success= ' + _this.oRequest.responseText); // This is the document contents
+                }
+                else {
+                    console.log('Error= ' + _this.oRequest.statusText);
+                    // e.g. if document is not found
+                }
+            }
+        };
+        //    oRequest.setRequestHeader('User-Agent',navigator.userAgent); 
+        try {
+            console.log('hei5');
+            this.oRequest.send(null);
+        }
+        catch (err) {
+            console.error('err2= ' + err);
+        }
     }
 };
 HomePage.ctorParameters = () => [
@@ -215,6 +225,30 @@ HomePage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     })
 ], HomePage);
 
+/*this._http.downloadFile(currentUrl, {},{}, path + 'myfile2.pdf'
+  ).then(
+  function(entry) {
+  entry.file(function (file) {
+  var reader = new FileReader();
+  reader.onloadend = function() {
+  console.log('this= '+this);
+  console.log("Successful file read: " + this.result);
+  var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
+  reader.result),
+  { type: "application/pdf" });
+  };
+  console.log('hei1');
+  reader.readAsArrayBuffer(file);
+  }, function(err) {
+  console.log(err);
+  });
+  }
+  ).catch(err => {
+  // prints 403
+  console.log('new error block ... ', err.status);
+  // prints Permission denied
+  console.log('new error block ... ', err.error);
+  });*/ 
 
 
 /***/ })

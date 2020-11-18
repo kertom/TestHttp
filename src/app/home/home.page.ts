@@ -12,6 +12,16 @@ import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 })
 export class HomePage {
 
+  sURL: string = 
+  'https://dl.dropboxusercontent.com/s/iaxtm7efi73arud/dummy.pdf?dl=0'     // Normal dropbox.com domain would give CORS error
+  oRequest = new XMLHttpRequest();
+  silentDownload: Boolean = false;                         // silentDownload hides link and clicks without user input
+  saveMode: Boolean = true;                                // toggles between save and read functions
+  blob: Blob;
+  blobText: string;
+  //console.clear();
+  //console.log('Running...');
+  
   constructor(private _http: HTTP,
     private filePicker: IOSFilePicker,
     private file:File,
@@ -33,36 +43,86 @@ chooseFile(){
       console.log("ending2= ");
 
     }else{
-      this.downloadPdf(uri);
+      this.downloadAndRead(uri);
     }
   })
   .catch(err => console.log('Error0=', err));
   console.log('hei5');
 }
 //here we download the chosen pdf file.
-downloadAndOpenPdf(currentUrl) { 
-  console.log('download pdf1');
+//1st approach
+downloadAndRead(currentUrl) { 
+  ////var/mobile/Containers/Data/Application
+  //currentUrl=currentUrl.
+  //replace("/private","file://");//file://
+  
+  console.log('download pdf1 currentUrl= '+currentUrl);
+  //currentUrl='file:///var/containers/bundle/Applications/var/mobile/Containers/Data/Application/'+
+  //'B7C41B3B-759E-477F-997B-CA0BE4A41D1C/AppData/tmp/DysEditor-Inbox/'+
+  //'myfile.pdf';
+  //currentUrl=this.sURL;
   let downloadUrl =currentUrl;//'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
   let path = this.file.dataDirectory;
+  
+  console.log('path2= '+path);
   const transfer = this.fileTransfer.create();
   //const filePath = this.file.dataDirectory + fileName; 
   //currentUrl=currentUrl.replace("/private","file://");
   var url = encodeURI(currentUrl);
   console.log('this._http= '+this._http);
-  this._http.downloadFile(currentUrl, {}, path + 'myfile.pdf', 
-  ''+function(entry) {
+  this.downloadAndRead2(downloadUrl);
+  
+}
+downloadAndRead2(dropBoxUrl) {
+    console.log('IN READ MODE. Reading file');
+    //dropBoxUrl=dropBoxUrl.replace("/private","file://");
+    
+    this.oRequest.open('GET', dropBoxUrl, false);//this.sURL
+    var _this = this;
+    this.oRequest.onreadystatechange = function(oEvent){  
+      console.log('request status= '+_this.oRequest.readyState);
+      if (_this.oRequest.readyState === 4) {
+        if (_this.oRequest.status === 200) {
+          console.log('Success= '+_this.oRequest.responseText);           // This is the document contents
+        } else {
+          console.log('Error= '+ _this.oRequest.statusText);    
+          // e.g. if document is not found
+        }
+      }
+    }
+  
+  
+    //    oRequest.setRequestHeader('User-Agent',navigator.userAgent); 
+    try {
+      console.log('hei5');
+      this.oRequest.send(null);
+    } catch (err) {
+      console.error('err2= '+err);
+    }
+}
+
+}
+/*this._http.downloadFile(currentUrl, {},{}, path + 'myfile2.pdf'
+  ).then(
+  function(entry) {
   entry.file(function (file) {
   var reader = new FileReader();
   reader.onloadend = function() {
   console.log('this= '+this);
   console.log("Successful file read: " + this.result);
-  var blob = new Blob(new Uint8Array(reader.result), 
+  var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
+  reader.result), 
   { type: "application/pdf" });
   };
   console.log('hei1');
   reader.readAsArrayBuffer(file);
   }, function(err) {
   console.log(err);
-  })});
-}
-}
+  });
+  }
+  ).catch(err => {
+  // prints 403
+  console.log('new error block ... ', err.status);
+  // prints Permission denied
+  console.log('new error block ... ', err.error);
+  });*/

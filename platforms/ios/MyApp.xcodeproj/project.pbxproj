@@ -42,6 +42,7 @@
 		C94592BD17264038858EB017 /* CDVFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FCCB92AFEA4438AF1E6476 /* CDVFile.m */; };
 		ECFD303188514E91915D1EC8 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A98132607E481098748F9E /* AFURLResponseSerialization.m */; };
 		FDF32ECAD4164BF0A6EA1757 /* CDVIonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9174FD5F174E04BC6FD785 /* CDVIonicKeyboard.m */; };
+		F23F04D5033F4055ABC5A431 /* CDVFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = BBF630E78D8D471F9BF1E9B9 /* CDVFileTransfer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,8 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = MyApp/config.xml; sourceTree = "<group>"; };
 		FAAE2D7A865642FE965D763A /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = "cordova-plugin-advanced-http/AFHTTPSessionManager.h"; sourceTree = "<group>"; };
 		FCCD315B7C384C258A71F774 /* BinaryResponseSerializer.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = BinaryResponseSerializer.m; path = "cordova-plugin-advanced-http/BinaryResponseSerializer.m"; sourceTree = "<group>"; };
+		BBF630E78D8D471F9BF1E9B9 /* CDVFileTransfer.m */ = {isa = PBXFileReference; name = "CDVFileTransfer.m"; path = "cordova-plugin-file-transfer/CDVFileTransfer.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		072D0B3246124F97ABFBACDC /* CDVFileTransfer.h */ = {isa = PBXFileReference; name = "CDVFileTransfer.h"; path = "cordova-plugin-file-transfer/CDVFileTransfer.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +307,8 @@
 				94AF0845B8E544F1BE08C193 /* CDVViewController+SplashScreen.h */,
 				6E715BB79CB54E17996512F5 /* CDVStatusBar.m */,
 				49F9E44BE8534B9B9CE482A5 /* CDVStatusBar.h */,
+				BBF630E78D8D471F9BF1E9B9 /* CDVFileTransfer.m */,
+				072D0B3246124F97ABFBACDC /* CDVFileTransfer.h */,
 			);
 			name = Plugins;
 			path = MyApp/Plugins;
@@ -459,6 +464,7 @@
 				706E0FB72BEB4F929D7064F7 /* CDVSplashScreen.m in Sources */,
 				2193F1E1D41B4DA7ADFD7832 /* CDVViewController+SplashScreen.m in Sources */,
 				AC73812C8C414DBF83526B57 /* CDVStatusBar.m in Sources */,
+				F23F04D5033F4055ABC5A431 /* CDVFileTransfer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

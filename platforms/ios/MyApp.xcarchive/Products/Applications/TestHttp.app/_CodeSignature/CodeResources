@@ -14,11 +14,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		GOLTFgDlTa/LPmvD26JnqXLCiy4=
+		sue+R4gX5dxcRcvr/KHjcMoszR8=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		LTc8sVO8jHmXqH1OL+Q8LbnUC8c=
+		wgigSdoHKGHKaMQx5qt/d32KYeM=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		XiwR3KFaDxwQtbOylUDxiQwNY7o=
+		nSP7z2H0/L7zivaePTo2eXNGHmI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		dDvY2BqNMOlmHTv+Hxa1xI6SyhA=
+		GW58AVwijlTyiVFFy6iB1fvqlxw=
 		</data>
 		<key>LaunchImage-1100-Landscape-2436h@3x.png</key>
 		<data>
@@ -106,7 +106,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		hWoYTbVD73Y+qCPoJPpXTpG3UUA=
+		s4NxyaDimDGCX6sMPbq6dKI4PRo=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -114,11 +114,11 @@
 		</data>
 		<key>config.xml</key>
 		<data>
-		w9gD5s52d/6Ub77HaZTuglxA9/g=
+		bnVVx4AGlPRcLOd8LcPSJRbO7R8=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		yx8JCuXgXLQrekFR1QyYlt8cbAc=
+		SOLjCj+I9+ubtwzcHDb/ASKT4Eo=
 		</data>
 		<key>www/0-es2015.js</key>
 		<data>
@@ -858,7 +858,7 @@
 		</data>
 		<key>www/cordova_plugins.js</key>
 		<data>
-		tZDy+r6JoHsw8vcU14/6y28TNZc=
+		/v1j8x6UVht7CzsNz4KmlD+AaYo=
 		</data>
 		<key>www/focus-visible-15ada7f7-js-es2015.js</key>
 		<data>
@@ -878,19 +878,19 @@
 		</data>
 		<key>www/home-home-module-es2015.js</key>
 		<data>
-		NSLfEDup6e1rAKF0nLCddNSyxpM=
+		/4rrr7i9dcIe1Q3JOkQwZaxRhIU=
 		</data>
 		<key>www/home-home-module-es2015.js.map</key>
 		<data>
-		AOh1jBvUjC9ZYCa36ho5oj6UblI=
+		coY7AxYWY14sA9xF6yzJnkZkm+4=
 		</data>
 		<key>www/home-home-module-es5.js</key>
 		<data>
-		qKN4kd9TaGZWXoiQ5WyQmlWi1/o=
+		9ZCviWHDglIUtgyki/uN1HzKjS4=
 		</data>
 		<key>www/home-home-module-es5.js.map</key>
 		<data>
-		LNgPhSwqCPKg1MQNt6YYJc5jfRE=
+		qJk9drL2D+Tsx1rcGJoZVCAdS8Y=
 		</data>
 		<key>www/index.html</key>
 		<data>
@@ -1003,6 +1003,14 @@
 		<key>www/plugins/cordova-plugin-device/www/device.js</key>
 		<data>
 		1GfO/IDwwyLde/veo05ABQB5yTk=
+		</data>
+		<key>www/plugins/cordova-plugin-file-transfer/www/FileTransfer.js</key>
+		<data>
+		+oP039n6GJu1fs54+QP0yTJsiHA=
+		</data>
+		<key>www/plugins/cordova-plugin-file-transfer/www/FileTransferError.js</key>
+		<data>
+		CwhFDysdKn06qN1rH2TPGUOpb8U=
 		</data>
 		<key>www/plugins/cordova-plugin-file/www/DirectoryEntry.js</key>
 		<data>
@@ -6273,14 +6281,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LSLZ7KpwLEsE1BjGzmFWW4bnf30cZ7nmZmzMveHvYV4=
+			ys4kxyoCbBf5Gs1e7iwQFNI4e/b3Y5NY83R8Ie70pEg=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GueljsBa8PM9qrWGb9Nz6jiOcbSIqR5ZFKEm5OIeHi8=
+			1UJ4bAQgI+GXkCBc1jpBLekC6/Qy6OFsapkZ912lSC0=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -6294,7 +6302,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			jPLPEp/zaatffVV2kcSXHuEszx7hiEocUEApQZuYosk=
+			O51PS2W9XEW29+RnHDHfyjPWkRGYkoS37xmYSGEPvKA=
 			</data>
 		</dict>
 		<key>LaunchImage-1100-Landscape-2436h@3x.png</key>
@@ -6427,21 +6435,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5SRbunVDj+Rct1+tGE982i6l+HoczWQ1htDEjM2EaYg=
+			J67V5Dz1DqTumZh3bS87on4HZ6ERFfswjLTPTYUipY0=
 			</data>
 		</dict>
 		<key>config.xml</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MQ0S6iII3zvfQS9PcY7j1VVwTqwsZpuDmM9a26LGX48=
+			HqqqZ1b6y7mgU91tjX/EOeQjW1PqKJznuo//pfVQIC0=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JErSy/RDeg06/9s5jSOKh0MV1RhFYWU8FT0Owt5M7AM=
+			F8v/eyOzBlNd9IS3xB1W8V9/1mfLD/wslyc43yXhJSo=
 			</data>
 		</dict>
 		<key>www/0-es2015.js</key>
@@ -7736,7 +7744,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AUiK4dyX7lbn0KtG4ia9G94cFAHLSe/28PFe4tCW2os=
+			7kzBxQRfdqVxGFrlAw4ipaYark+8VlAmRJhQppU27dU=
 			</data>
 		</dict>
 		<key>www/focus-visible-15ada7f7-js-es2015.js</key>
@@ -7771,28 +7779,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1dZf/rWmEQxS2yG5ozNwwRWY/0Ih78mlXi2r+aoiPM4=
+			K6DT8nt3do7VeDhUzQe+nX189TICo69FxicujDK2wFI=
 			</data>
 		</dict>
 		<key>www/home-home-module-es2015.js.map</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RQhtxSznB475MfQOs2P8igdYtTYAFx92AkVM4wf7HoA=
+			pMgsMka1TYeNcwUxB3NoYM2HU+ZMUZ1yecITD4P4FrQ=
 			</data>
 		</dict>
 		<key>www/home-home-module-es5.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6Tnn9mPmdtTn+zhy4QjOroGhTTinxBDJWW7KoOVdIJM=
+			59We6KOFFg+Hvag8vGNrMrIosU84OqqYChytMmh3dLM=
 			</data>
 		</dict>
 		<key>www/home-home-module-es5.js.map</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			a922LEMc0N0K8F+a3Gtys+ER416nQ0O138z4e1nzTcc=
+			fprVFz4hE600WuC2bow2MOlLzSMePbqanxP5vdxaNl8=
 			</data>
 		</dict>
 		<key>www/index.html</key>
@@ -7989,6 +7997,20 @@
 			<key>hash2</key>
 			<data>
 			lxEtW0KU6QKkPs5VCr3ZhsLIA3wAu5RMxZ4W4izq3gE=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file-transfer/www/FileTransfer.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1mh8C5v7iDTA3qbj8mRKN1MhQebztsZibqmUAup9JwI=
+			</data>
+		</dict>
+		<key>www/plugins/cordova-plugin-file-transfer/www/FileTransferError.js</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			l6Wd0RV/WgmPpmcn0UxoM30y2N2qNzTKAS4MD+MCUpc=
 			</data>
 		</dict>
 		<key>www/plugins/cordova-plugin-file/www/DirectoryEntry.js</key>
