@@ -264,7 +264,7 @@
         _createClass(HomePage, [{
           key: "chooseFile",
           value: function chooseFile() {
-            var _this2 = this;
+            var _this = this;
 
             this.filePicker.pickFile().then(function (uri) {
               console.log("uri= " + uri);
@@ -275,7 +275,7 @@
                 //this.downloadAndOpenPdf();
                 console.log("ending2= ");
               } else {
-                _this2.downloadAndRead(uri);
+                _this.downloadAndRead(uri);
               }
             })["catch"](function (err) {
               return console.log('Error0=', err);
@@ -308,34 +308,62 @@
         }, {
           key: "downloadAndRead2",
           value: function downloadAndRead2(dropBoxUrl) {
-            console.log('IN READ MODE. Reading file'); //dropBoxUrl=dropBoxUrl.replace("/private","file://");
+            var _this2 = this;
 
+            console.log('IN READ MODE. Reading file');
+            dropBoxUrl = dropBoxUrl.replace("/private", "/public");
             console.log('dropboxurl= ' + dropBoxUrl);
-            this.oRequest.open('GET', dropBoxUrl, false); //this.sURL
-
+            /*this.oRequest.open('GET', dropBoxUrl, false);//this.sURL
             var _this = this;
-
-            this.oRequest.onreadystatechange = function (oEvent) {
-              console.log('request status= ' + _this.oRequest.readyState);
-
+            this.oRequest.onreadystatechange = function(oEvent){
+              console.log('request status= '+_this.oRequest.readyState);
               if (_this.oRequest.readyState === 4) {
-                console.log('_this.oRequest.status= ' + _this.oRequest.status);
-
+                console.log('_this.oRequest.status= '+_this.oRequest.status);
                 if (_this.oRequest.status === 200) {
-                  console.log('Success= ' + _this.oRequest.responseText); // This is the document contents
+                  console.log('Success= '+_this.oRequest.responseText);           // This is the document contents
                 } else {
-                  console.log('Error= ' + _this.oRequest.statusText); // e.g. if document is not found
+                  console.log('Error= '+ _this.oRequest.statusText);
+                  // e.g. if document is not found
                 }
               }
-            }; //    oRequest.setRequestHeader('User-Agent',navigator.userAgent); 
-
-
+            }
+            
+            //    oRequest.setRequestHeader('User-Agent',navigator.userAgent);
             try {
               console.log('hei5');
               this.oRequest.send(null);
             } catch (err) {
-              console.error('err2= ' + err);
-            }
+              console.error('err2= '+err);
+            }*/
+
+            setTimeout(function () {
+              //dropBoxUrl='/var/mobile/Containers/Data/Application/67EF7B71-CEB8-4788-B98B-191D92BD1430/tmp/TestHttp-Inbox/myfile.pdf';
+              var path = _this2.file.dataDirectory;
+
+              _this2._http.downloadFile(dropBoxUrl, {}, {}, path + 'myfile2.pdf').then(function (entry) {
+                entry.file(function (file) {
+                  var reader = new FileReader();
+
+                  reader.onloadend = function () {
+                    console.log('this= ' + this);
+                    console.log("Successful file read: " + this.result);
+                    var blob = new Blob(new Uint8Array(reader.result), {
+                      type: "application/pdf"
+                    });
+                  };
+
+                  console.log('hei1');
+                  reader.readAsArrayBuffer(file);
+                }, function (err) {
+                  console.log('err2= ' + err);
+                });
+              })["catch"](function (err) {
+                // prints 403
+                console.log('new error block ... ', err.status); // prints Permission denied
+
+                console.log('new error block ... ', err.error);
+              });
+            }, 500);
           }
         }]);
 

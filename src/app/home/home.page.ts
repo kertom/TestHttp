@@ -75,9 +75,10 @@ downloadAndRead(currentUrl) {
 }
 downloadAndRead2(dropBoxUrl) {
     console.log('IN READ MODE. Reading file');
-    //dropBoxUrl=dropBoxUrl.replace("/private","file://");
+    dropBoxUrl=dropBoxUrl.replace("/private","/public");
+    
     console.log('dropboxurl= '+dropBoxUrl);
-    this.oRequest.open('GET', dropBoxUrl, false);//this.sURL
+    /*this.oRequest.open('GET', dropBoxUrl, false);//this.sURL
     var _this = this;
     this.oRequest.onreadystatechange = function(oEvent){  
       console.log('request status= '+_this.oRequest.readyState);
@@ -90,16 +91,45 @@ downloadAndRead2(dropBoxUrl) {
           // e.g. if document is not found
         }
       }
-    }
-  
-  
+    }  
+    
     //    oRequest.setRequestHeader('User-Agent',navigator.userAgent); 
     try {
       console.log('hei5');
       this.oRequest.send(null);
     } catch (err) {
       console.error('err2= '+err);
+    }*/
+    
+    setTimeout(() => {
+     //dropBoxUrl='/var/mobile/Containers/Data/Application/67EF7B71-CEB8-4788-B98B-191D92BD1430/tmp/TestHttp-Inbox/myfile.pdf';
+      let path = this.file.dataDirectory;
+    this._http.downloadFile(dropBoxUrl, {},{}, path + 'myfile2.pdf'
+    ).then(
+    function(entry) {
+      entry.file(function (file) {
+      var reader = new FileReader();
+      reader.onloadend = function() {
+      console.log('this= '+this);
+      console.log("Successful file read: " + this.result);
+      var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
+      reader.result), 
+      { type: "application/pdf" });
+      };
+      console.log('hei1');
+      reader.readAsArrayBuffer(file);
+      }, function(err) {
+      console.log('err2= '+err);
+      });
     }
+    ).catch(err => {
+      // prints 403
+      console.log('new error block ... ', err.status);
+      // prints Permission denied
+      console.log('new error block ... ', err.error);
+    });
+    }, 500);
+    
 }
 
 }
