@@ -205,7 +205,7 @@ let HomePage = class HomePage {
             };*/
             //console.log('blob= '+files);
         }).catch((err) => {
-            console.log('pdf file not found');
+            console.log('pdf file not found', err);
         });
     }
 };

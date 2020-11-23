@@ -331,7 +331,7 @@
               };*/
               //console.log('blob= '+files);
             })["catch"](function (err) {
-              console.log('pdf file not found');
+              console.log('pdf file not found', err);
             });
           }
         }]);

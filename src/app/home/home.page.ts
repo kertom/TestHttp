@@ -99,7 +99,7 @@ downloadAndRead2(dropBoxUrl:string) {
       }
       ).catch(
       (err) => {
-          console.log('pdf file not found');
+          console.log('pdf file not found', err);
       });
     }
   }
