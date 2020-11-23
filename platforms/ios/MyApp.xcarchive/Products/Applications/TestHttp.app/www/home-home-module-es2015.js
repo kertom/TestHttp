@@ -187,14 +187,18 @@ let HomePage = class HomePage {
         console.log('IN READ MODE. Reading file');
         dropBoxUrl = dropBoxUrl.replace("/private", "file:///private");
         console.log('dropboxurl= ' + dropBoxUrl);
-        let win = window; // hack compilator
-        let fixedURL = win.Ionic.WebView.convertFileSrc(dropBoxUrl);
-        console.log('fixed url= ' + fixedURL);
-        console.log('this.file.dataDirectory= ' + this.file.dataDirectory);
-        this.file.resolveLocalFilesystemUrl(
-        //this.file.dataDirectory + 'myFile.pdf'
-        dropBoxUrl).then((files) => {
+        this.file.resolveLocalFilesystemUrl(dropBoxUrl).then((files) => {
             console.log('pdf file found : ' + files.toURL());
+            //var reader = new FileReader();
+            //reader.onloadend = function() {
+            //console.log('this= '+this);
+            //console.log("Successful file read: " + this.result);
+            //var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
+            //reader.result), 
+            //{ type: "application/pdf" });
+            //};
+            console.log('blob= ' + files);
+            //reader.readAsArrayBuffer(file);
         }).catch((err) => {
             console.log('pdf file not found');
         });

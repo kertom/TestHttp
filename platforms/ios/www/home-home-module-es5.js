@@ -313,14 +313,17 @@
             console.log('IN READ MODE. Reading file');
             dropBoxUrl = dropBoxUrl.replace("/private", "file:///private");
             console.log('dropboxurl= ' + dropBoxUrl);
-            var win = window; // hack compilator
+            this.file.resolveLocalFilesystemUrl(dropBoxUrl).then(function (files) {
+              console.log('pdf file found : ' + files.toURL()); //var reader = new FileReader();
+              //reader.onloadend = function() {
+              //console.log('this= '+this);
+              //console.log("Successful file read: " + this.result);
+              //var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
+              //reader.result), 
+              //{ type: "application/pdf" });
+              //};
 
-            var fixedURL = win.Ionic.WebView.convertFileSrc(dropBoxUrl);
-            console.log('fixed url= ' + fixedURL);
-            console.log('this.file.dataDirectory= ' + this.file.dataDirectory);
-            this.file.resolveLocalFilesystemUrl( //this.file.dataDirectory + 'myFile.pdf'
-            dropBoxUrl).then(function (files) {
-              console.log('pdf file found : ' + files.toURL());
+              console.log('blob= ' + files); //reader.readAsArrayBuffer(file);
             })["catch"](function (err) {
               console.log('pdf file not found');
             });
