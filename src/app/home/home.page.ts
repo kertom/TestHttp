@@ -43,6 +43,7 @@ chooseFile(){
       console.log("ending2= ");
 
     }else{
+      console.log('uri original= '+uri);
       this.downloadAndRead(uri);
     }
   })
@@ -75,9 +76,28 @@ downloadAndRead(currentUrl) {
 }
 downloadAndRead2(dropBoxUrl) {
     console.log('IN READ MODE. Reading file');
-    dropBoxUrl=dropBoxUrl.replace("/private","/public");
-    
+    dropBoxUrl=dropBoxUrl.replace("/private","file:///private");
     console.log('dropboxurl= '+dropBoxUrl);
+    let win: any = window; // hack compilator
+    let fixedURL = win.Ionic.WebView.convertFileSrc(dropBoxUrl);   
+    console.log('fixed url= '+fixedURL);
+    console.log('this.file.dataDirectory= '+this.file.dataDirectory);
+    this.file.resolveLocalFilesystemUrl(
+      //this.file.dataDirectory + 'myFile.pdf'
+      dropBoxUrl).then(
+      (files) => {
+          console.log('pdf file found : ' + files.toURL());
+      }
+  ).catch(
+      (err) => {
+          console.log('pdf file not found');
+      }
+  );
+    }
+  }
+
+
+
     /*this.oRequest.open('GET', dropBoxUrl, false);//this.sURL
     var _this = this;
     this.oRequest.onreadystatechange = function(oEvent){  
@@ -101,12 +121,14 @@ downloadAndRead2(dropBoxUrl) {
       console.error('err2= '+err);
     }*/
     
-    setTimeout(() => {
+    //setTimeout(() => {
      //dropBoxUrl='/var/mobile/Containers/Data/Application/67EF7B71-CEB8-4788-B98B-191D92BD1430/tmp/TestHttp-Inbox/myfile.pdf';
-      let path = this.file.dataDirectory;
-    this._http.downloadFile(dropBoxUrl, {},{}, path + 'myfile2.pdf'
-    ).then(
-    function(entry) {
+      //let path = this.file.dataDirectory;
+    //this._http.downloadFile(dropBoxUrl, {},{}, path + 'myfile2.pdf'
+    //).then(
+    
+    
+    /*function(entry) {
       entry.file(function (file) {
       var reader = new FileReader();
       reader.onloadend = function() {
@@ -121,18 +143,12 @@ downloadAndRead2(dropBoxUrl) {
       }, function(err) {
       console.log('err2= '+err);
       });
-    }
-    ).catch(err => {
-      // prints 403
-      console.log('new error block ... ', err.status);
-      // prints Permission denied
-      console.log('new error block ... ', err.error);
-    });
-    }, 500);
+    };
+    }, 500);*/
     
-}
 
-}
+
+//}
 /*this._http.downloadFile(currentUrl, {},{}, path + 'myfile2.pdf'
   ).then(
   function(entry) {
