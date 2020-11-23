@@ -78,27 +78,23 @@ downloadAndRead2(dropBoxUrl) {
     console.log('IN READ MODE. Reading file');
     dropBoxUrl=dropBoxUrl.replace("/private","file:///private");
     console.log('dropboxurl= '+dropBoxUrl);
-    this.file.resolveLocalFilesystemUrl(
-      dropBoxUrl).then(
+    this.file.resolveLocalFilesystemUrl(dropBoxUrl).then(
       (files) => {
-          console.log('pdf file found : ' + files.toURL());
-          var reader = new FileReader();
-          reader.onloadend = function() {
+        console.log('pdf file found : ' + files.toURL());
+        var reader = new FileReader();
+        reader.onloadend = function() {
           //console.log('this= '+this);
           //console.log("Successful file read: " + this.result);
           var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
-          reader.result), 
-          { type: "application/pdf" });
-      };
+          reader.result),{ type: "application/pdf" });
+          reader.readAsArrayBuffer(files);
+        };
       //console.log('blob= '+files);
-      //reader.readAsArrayBuffer(files);
       }
-      
-  ).catch(
+      ).catch(
       (err) => {
           console.log('pdf file not found');
-      }
-  );
+      });
     }
   }
 
