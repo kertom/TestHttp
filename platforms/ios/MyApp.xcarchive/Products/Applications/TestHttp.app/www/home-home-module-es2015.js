@@ -189,16 +189,14 @@ let HomePage = class HomePage {
         console.log('dropboxurl= ' + dropBoxUrl);
         this.file.resolveLocalFilesystemUrl(dropBoxUrl).then((files) => {
             console.log('pdf file found : ' + files.toURL());
-            //var reader = new FileReader();
-            //reader.onloadend = function() {
-            //console.log('this= '+this);
-            //console.log("Successful file read: " + this.result);
-            //var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
-            //reader.result), 
-            //{ type: "application/pdf" });
-            //};
-            console.log('blob= ' + files);
-            //reader.readAsArrayBuffer(file);
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                //console.log('this= '+this);
+                //console.log("Successful file read: " + this.result);
+                var blob = new Blob(new Uint8Array(reader.result), { type: "application/pdf" });
+            };
+            //console.log('blob= '+files);
+            //reader.readAsArrayBuffer(files);
         }).catch((err) => {
             console.log('pdf file not found');
         });
