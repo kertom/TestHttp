@@ -264,7 +264,7 @@
         _createClass(HomePage, [{
           key: "chooseFile",
           value: function chooseFile() {
-            var _this = this;
+            var _this2 = this;
 
             this.filePicker.pickFile().then(function (uri) {
               console.log("uri= " + uri);
@@ -275,64 +275,135 @@
                 //this.downloadAndOpenPdf();
                 console.log("ending2= ");
               } else {
-                console.log('uri original= ' + uri);
+                console.log('uri original= ' + uri); //this.downloadAndRead(uri);
 
-                _this.downloadAndRead(uri);
+                _this2.downloadAndRead(uri);
               }
             })["catch"](function (err) {
               return console.log('Error0=', err);
             });
             console.log('hei5');
-          } //1st approach
+          } //2nd approach
+
+          /*downloadAndOpenPdf(uri) {
+            console.log('IN SAVE MODE. Creating blob link...');
+            this.oRequest.open('GET', this.sURL);                                   // Creates the HTTP request
+            this.oRequest.responseType = 'blob';
+            var _this = this;
+            this.oRequest.onload = function() {
+              console.log('hei4');
+              _this.blob = this.response;                                       // Save response to blob object
+              _this.readBlob();                                                 // Read the blob if we like
+              console.log('rb2');
+              /*const link = document.createElement('a');
+              link.href = URL.createObjectURL(_this.blob);                      // Creates a blob link
+              console.log('rb3');
+              if (!_this.silentDownload) link.innerHTML = 'Download the file';
+              link.download = 'my-dummy-file.pdf';                        // Gives the file a name
+              console.log('rb4');
+              document.body.appendChild(link);
+              console.log('hei5');
+              
+              if (_this.silentDownload){
+                console.log('Silently downloading the file...');
+                link.click();                                             // Automatically triggers the link
+              }/
+            }
+            //console.log('rb6');
+          
+            this.oRequest.send();                                              // Initiates the HTTP request
+          }*/
+
+          /*downloadAndRead(uri) {
+            console.log('IN READ MODE. Reading file');
+            this.oRequest.open('GET', this.sURL, false);
+            var _this = this;
+            this.oRequest.onreadystatechange = function(oEvent){
+              if (_this.oRequest.readyState === 4) {
+                if (_this.oRequest.status === 200) {
+                  console.log(_this.oRequest.responseText);           // This is the document contents
+                } else {
+                  console.log('Error', _this.oRequest.statusText);    // e.g. if document is not found
+                }
+              }
+            }
+          
+            //    oRequest.setRequestHeader('User-Agent',navigator.userAgent);
+            try {
+              this.oRequest.send(null);
+            } catch (err) {
+              console.error(err);
+            }
+          }
+          readBlob(){
+            console.log('Reading the blob...')
+            const reader = new FileReader();
+            var _this = this;
+            reader.addEventListener('loadend', () => {
+              console.log('rb1');
+              _this.blobText = ''+reader.result;
+              console.log(this.blobText);
+            });
+            //reader.readAsText(_this.blob);
+          }*/
+          //2nd approach
 
         }, {
           key: "downloadAndRead",
-          value: function downloadAndRead(currentUrl) {
-            ////var/mobile/Containers/Data/Application
-            //currentUrl=currentUrl.
-            //replace("/private","file://");//file://
-            console.log('download pdf1 currentUrl= ' + currentUrl); //currentUrl='file:///var/containers/bundle/Applications/var/mobile/Containers/Data/Application/'+
-            //'B7C41B3B-759E-477F-997B-CA0BE4A41D1C/AppData/tmp/DysEditor-Inbox/'+
-            //'myfile.pdf';
-            //currentUrl=this.sURL;
+          value: function downloadAndRead(dropBoxUrl) {
+            var _this3 = this;
 
-            var downloadUrl = currentUrl; //'https://devdactic.com/html/5-simple-hacks-LBT.pdf';
-
-            var path = this.file.dataDirectory;
-            console.log('path2= ' + path);
-            var transfer = this.fileTransfer.create(); //const filePath = this.file.dataDirectory + fileName; 
-            //currentUrl=currentUrl.replace("/private","file://");
-
-            var url = encodeURI(currentUrl);
-            console.log('this._http= ' + this._http);
-            this.downloadAndRead2(downloadUrl);
-          }
-        }, {
-          key: "downloadAndRead2",
-          value: function downloadAndRead2(dropBoxUrl) {
             console.log('IN READ MODE. Reading file');
             dropBoxUrl = dropBoxUrl.replace("/private", "file:///private");
             console.log('dropboxurl=', dropBoxUrl);
             this.file.resolveLocalFilesystemUrl(dropBoxUrl).then(function (files) {
               console.log('pdf file found: ', files.toURL());
-              var reader = new FileReader(); //let blobText=null;
 
-              reader.addEventListener('loadend', function () {
-                //blobText = reader.result;
-                console.log('blobText=', reader.result);
-              });
-              /*reader.onloadend = function() {
-                //console.log('this= '+this);
-                console.log("Successful file read: " + this.result);
-                var blob = new Blob(<BlobPart[]><unknown> new Uint8Array(<ArrayBuffer>
-                reader.result),{ type: "application/pdf" });
-                //reader.readAsArrayBuffer(<any>files);
-                console.log('blob:', blob);
-              };*/
-              //console.log('blob= '+files);
+              _this3.readPdfFile(files); //this.readBlob();
+
+              /*var reader = new FileReader();
+              console.log('pdf file found2');
+              var _this = this;
+              console.log('pdf file found3');
+              reader.addEventListener('loadend', () => {
+                console.log('pdf file found4');
+                _this.blobText = ''+reader.result;
+                console.log('this.blobText: ',this.blobText);
+              });*/
+              //reader.readAsText(_this.blob);
+
             })["catch"](function (err) {
               console.log('pdf file not found', err);
             });
+          }
+        }, {
+          key: "readPdfFile",
+          value: function readPdfFile(file) {
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+              var pdfBlob = new Blob([reader.result], {
+                type: file.type
+              });
+              console.log('pdfBlob: ', pdfBlob);
+            };
+
+            reader.readAsArrayBuffer(file);
+          }
+        }, {
+          key: "readBlob",
+          value: function readBlob() {
+            var _this4 = this;
+
+            console.log('Reading the blob...');
+            var reader = new FileReader();
+
+            var _this = this;
+
+            reader.addEventListener('loadend', function () {
+              _this.blobText = '' + reader.result;
+              console.log(_this4.blobText);
+            }); //reader.readAsText(_this.blob);
           }
         }]);
 
@@ -362,78 +433,6 @@
         /*! ./home.page.scss */
         "./src/app/home/home.page.scss"))["default"]]
       })], HomePage);
-      /*this.oRequest.open('GET', dropBoxUrl, false);//this.sURL
-      var _this = this;
-      this.oRequest.onreadystatechange = function(oEvent){
-        console.log('request status= '+_this.oRequest.readyState);
-        if (_this.oRequest.readyState === 4) {
-          console.log('_this.oRequest.status= '+_this.oRequest.status);
-          if (_this.oRequest.status === 200) {
-            console.log('Success= '+_this.oRequest.responseText);           // This is the document contents
-          } else {
-            console.log('Error= '+ _this.oRequest.statusText);
-            // e.g. if document is not found
-          }
-        }
-      }
-      
-      //    oRequest.setRequestHeader('User-Agent',navigator.userAgent);
-      try {
-        console.log('hei5');
-        this.oRequest.send(null);
-      } catch (err) {
-        console.error('err2= '+err);
-      }*/
-      //setTimeout(() => {
-      //dropBoxUrl='/var/mobile/Containers/Data/Application/67EF7B71-CEB8-4788-B98B-191D92BD1430/tmp/TestHttp-Inbox/myfile.pdf';
-      //let path = this.file.dataDirectory;
-      //this._http.downloadFile(dropBoxUrl, {},{}, path + 'myfile2.pdf'
-      //).then(
-
-      /*function(entry) {
-        entry.file(function (file) {
-        var reader = new FileReader();
-        reader.onloadend = function() {
-        console.log('this= '+this);
-        console.log("Successful file read: " + this.result);
-        var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
-        reader.result),
-        { type: "application/pdf" });
-        };
-        console.log('hei1');
-        reader.readAsArrayBuffer(file);
-        }, function(err) {
-        console.log('err2= '+err);
-        });
-      };
-      }, 500);*/
-      //}
-
-      /*this._http.downloadFile(currentUrl, {},{}, path + 'myfile2.pdf'
-        ).then(
-        function(entry) {
-        entry.file(function (file) {
-        var reader = new FileReader();
-        reader.onloadend = function() {
-        console.log('this= '+this);
-        console.log("Successful file read: " + this.result);
-        var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
-        reader.result),
-        { type: "application/pdf" });
-        };
-        console.log('hei1');
-        reader.readAsArrayBuffer(file);
-        }, function(err) {
-        console.log(err);
-        });
-        }
-        ).catch(err => {
-        // prints 403
-        console.log('new error block ... ', err.status);
-        // prints Permission denied
-        console.log('new error block ... ', err.error);
-        });*/
-
       /***/
     }
   }]);
