@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Blank</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div id=\"container\">\n    <ion-button (click)=\"this.chooseFile()\">Open Files</ion-button>\n    <strong>Ready to create an app?</strong>\n    <p>Start with Ionic <a target=\"_blank\" rel=\"noopener noreferrer\" \n      href=\"https://ionicframework.com/docs/components\">UI Components</a>\n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n    </p>\n  </div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Blank</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div id=\"container\">\n    <ion-button (click)=\"this.chooseFile($event)\">Open Files</ion-button>\n    <strong>Ready to create an app?</strong>\n    <p>Start with Ionic <a target=\"_blank\" rel=\"noopener noreferrer\" \n      href=\"https://ionicframework.com/docs/components\">UI Components</a>\n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n    </p>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -144,11 +144,11 @@ let HomePage = class HomePage {
         this.saveMode = true; // toggles between save and read functions
     }
     //here we choose a file from the file picker
-    chooseFile() {
+    chooseFile(event) {
         this.filePicker.pickFile()
             .then(uri => {
             console.log("uri= " + uri);
-            var ending = uri.substring(uri.length - 3, 3);
+            let ending = uri.substring(uri.length - 3, 3);
             console.log("ending= " + ending);
             //if it is a pdf file ,then we download it
             if (ending == 'pdf') {
@@ -158,7 +158,7 @@ let HomePage = class HomePage {
             else {
                 console.log('uri original= ' + uri);
                 //this.downloadAndRead(uri);
-                this.downloadAndRead(uri);
+                this.downloadAndRead(uri, event);
             }
         })
             .catch(err => console.log('Error0=', err));
@@ -226,35 +226,57 @@ let HomePage = class HomePage {
       //reader.readAsText(_this.blob);
     }*/
     //2nd approach
-    downloadAndRead(dropBoxUrl) {
+    downloadAndRead(dropBoxUrl, event) {
         console.log('IN READ MODE. Reading file');
         dropBoxUrl = dropBoxUrl.replace("/private", "file:///private");
         console.log('dropboxurl=', dropBoxUrl);
-        this.file.resolveLocalFilesystemUrl(dropBoxUrl).then((files) => {
-            console.log('pdf file found: ', files.toURL());
-            this.readPdfFile(files);
-            //this.readBlob();
-            /*var reader = new FileReader();
-            console.log('pdf file found2');
-            var _this = this;
-            console.log('pdf file found3');
-            reader.addEventListener('loadend', () => {
-              console.log('pdf file found4');
-              _this.blobText = ''+reader.result;
-              console.log('this.blobText: ',this.blobText);
-            });*/
-            //reader.readAsText(_this.blob);
-        }).catch((err) => {
-            console.log('pdf file not found', err);
+        this.file.resolveLocalFilesystemUrl(dropBoxUrl).then((entry) => {
+            entry.file(function (file) {
+                let reader = new FileReader();
+                console.log('hei1');
+                reader.onloadend = function (encodedFile) {
+                    console.log('hei2');
+                    let src = encodedFile.target.result;
+                    console.log('src1= ', src);
+                    src = src.split("base64,");
+                    console.log('src2= ', src);
+                    let contentAsBase64EncodedString = src[1];
+                    console.log('contentAsBase64EncodedString= ', contentAsBase64EncodedString);
+                };
+                console.log('hei3');
+                reader.readAsDataURL(file);
+                console.log('hei4');
+            });
+        }).catch((error) => {
+            console.log(error);
         });
     }
-    readPdfFile(file) {
+    readPdfFile(file, event) {
         const reader = new FileReader();
+        console.log('reader is ', reader);
         reader.onloadend = () => {
-            const pdfBlob = new Blob([reader.result], { type: file.type });
-            console.log('pdfBlob: ', pdfBlob);
+            // const imgBlob = new Blob([reader.result], {type: file.type});
+            console.log('reader2 is ', reader);
         };
-        reader.readAsArrayBuffer(file);
+        console.log('reader3 is ', reader);
+        // var blob = new Blob(<BlobPart[]><unknown>new Uint8Array(<ArrayBuffer>
+        // file.files[0]), 
+        // { type: "application/pdf" });
+        // };
+        // console.log('new blob is ', file.blob());
+        // const Blob = require('blob');
+        // let b = new Blob(file);
+        // console.log('b= ',b);  
+        // reader.readAsDataURL(file); //files[0]
+        console.log('event.target.result is ', event.target.result);
+        /*reader.onloadend = () => {
+            const pdfBlob = new Blob([reader.result], {type: file.type});
+            console.log('pdfBlob: ',pdfBlob);
+        };
+        console.log('file.files= ',file.files);
+        console.log('file.files[0]= ',file.files[0]);
+        
+        reader.readAsArrayBuffer(file.files[0]);*/
     }
     readBlob() {
         console.log('Reading the blob...');
@@ -262,6 +284,7 @@ let HomePage = class HomePage {
         var _this = this;
         reader.addEventListener('loadend', () => {
             _this.blobText = '' + reader.result;
+            console.log('reader7');
             console.log(this.blobText);
         });
         //reader.readAsText(_this.blob);

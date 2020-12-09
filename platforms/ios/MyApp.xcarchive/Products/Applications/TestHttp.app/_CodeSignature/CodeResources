@@ -14,11 +14,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		KAqbfSJxsD0cC/deOYE1wS8ObEs=
+		gnFtSmI7PVHnehuA+nhKTg52OAE=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		keiD/YgobH6F6dA7qjrZ/1OuwvE=
+		DD1dpns5RSmUTJz1IoVA1X6Atwo=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		tCxNeZVDne2hTOjEmESK2sS4x8U=
+		DMJ7dR5WqtcOw5egZcDBkK6R4Og=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -106,7 +106,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		Sz050fvb/DeMWXYEcr2+nUbEvBA=
+		5FRAZXsKsE7IgVDRJygOz5hhrZY=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -878,19 +878,19 @@
 		</data>
 		<key>www/home-home-module-es2015.js</key>
 		<data>
-		ORUISz1KQTobxNUcZ4CZgZetna0=
+		WSPXEwzg6QXvxAId7tJLCfnPPH0=
 		</data>
 		<key>www/home-home-module-es2015.js.map</key>
 		<data>
-		p/+Dfmxlv4O7uk6tt8dn82FLhGg=
+		flnfjt2oPZ2C2w1i9IFhnF5CzBc=
 		</data>
 		<key>www/home-home-module-es5.js</key>
 		<data>
-		q7U0h3402VFn0Xbt/bIuMOkzBe8=
+		Rg5RmUn8u5BNSkN4YAoU4NgUSmc=
 		</data>
 		<key>www/home-home-module-es5.js.map</key>
 		<data>
-		lK2ci4j8vbKEY5p6AyyrSMB8Y+g=
+		qBLY9pmKR/gakVkz1W5eNHfkv9k=
 		</data>
 		<key>www/index.html</key>
 		<data>
@@ -6281,14 +6281,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GJ6Vt2lLwulNH7GfSTikBm3Vt7E3dA97ifXAQQiXkJo=
+			+X+xMKNxfl65xMYRlDCUUbMHOevRNZblXZFwoQRp6TA=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YjJJzmmfY7hUaLf9QmKl+FlmqFdI1Pyuyc3TVzv2Wic=
+			NdsmIhQhXSLlCkBys9JJlrPV/mp/AsCQKVa5uYWfFBE=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -6302,7 +6302,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Etq7rBqtR5oeYWKr9QnpBTqrOv1NDP09AeFWgGXEFe8=
+			4QV9Pe+8Kb4E4LiaLAwfgiI3ijNSMcYUqokfO9s5R7U=
 			</data>
 		</dict>
 		<key>LaunchImage-1100-Landscape-2436h@3x.png</key>
@@ -6435,7 +6435,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5+pMAvl5OSS6Xe9+/JdYEvTvusAmxyjDUXW26qWec3g=
+			eCfXLAhhb+6KnZTOPb1cBNH5JLkgRQNPjoXf6LnAD9I=
 			</data>
 		</dict>
 		<key>config.xml</key>
@@ -7779,28 +7779,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			83Xlc0Ddkwz6NWCa1hDLvpF5GYRQ39Hsb/sZLdg4GJY=
+			02RYYPq2TykhcqrvDJtuy/JefUup/ia3Q89cQdg+wVc=
 			</data>
 		</dict>
 		<key>www/home-home-module-es2015.js.map</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5Sz3UF9UoeVXtXFquBuggfafLmEz41I0NeN8/2LI44M=
+			VM7yyGbHpET1WVL3ZUChGHkBxmi7nNOHdGRw9vbiAFM=
 			</data>
 		</dict>
 		<key>www/home-home-module-es5.js</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7MgNuWPXShkvUcjCjbHW9/RZjtCw7gl/hMXLZgWQPB0=
+			CSPUZe0axQofhdu8IzhIDAoiXendO+bIPrCkgRIRZ20=
 			</data>
 		</dict>
 		<key>www/home-home-module-es5.js.map</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			amRzXy9vK9SKDsZ3BH0OTIXu61F1J6kya990BOEPffQ=
+			Q3aZWtJc2lmXwfQJXfH4hSSfeRTTFjgwzgE8vd4sO+Q=
 			</data>
 		</dict>
 		<key>www/index.html</key>
