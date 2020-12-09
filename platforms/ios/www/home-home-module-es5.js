@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Blank</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div id=\"container\">\n    <ion-button (click)=\"this.chooseFile($event)\">Open Files</ion-button>\n    <strong>Ready to create an app?</strong>\n    <p>Start with Ionic <a target=\"_blank\" rel=\"noopener noreferrer\" \n      href=\"https://ionicframework.com/docs/components\">UI Components</a>\n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n    </p>\n  </div>\n</ion-content>\n";
+      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Blank</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div id=\"container\">\n    <ion-button (click)=\"this.chooseFile()\">Open Files</ion-button>\n    <strong>Ready to create an app?</strong>\n    <p>Start with Ionic <a target=\"_blank\" rel=\"noopener noreferrer\" \n      href=\"https://ionicframework.com/docs/components\">UI Components</a>\n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n    </p>\n  </div>\n</ion-content>\n";
       /***/
     },
 
@@ -258,12 +258,12 @@
           this.silentDownload = false; // silentDownload hides link and clicks without user input
 
           this.saveMode = true; // toggles between save and read functions
-        } //here we choose a file from the file picker
+        } // here we choose a file from the file picker
 
 
         _createClass(HomePage, [{
           key: "chooseFile",
-          value: function chooseFile(event) {
+          value: function chooseFile() {
             var _this2 = this;
 
             this.filePicker.pickFile().then(function (uri) {
@@ -275,15 +275,15 @@
                 //this.downloadAndOpenPdf();
                 console.log("ending2= ");
               } else {
-                console.log('uri original= ' + uri); //this.downloadAndRead(uri);
+                console.log('uri original= ', uri); // this.downloadAndRead(uri);
 
-                _this2.downloadAndRead(uri, event);
+                _this2.downloadAndRead(uri);
               }
             })["catch"](function (err) {
               return console.log('Error0=', err);
             });
             console.log('hei5');
-          } //2nd approach
+          } // 2nd approach
 
           /*downloadAndOpenPdf(uri) {
             console.log('IN SAVE MODE. Creating blob link...');
@@ -346,11 +346,11 @@
             });
             //reader.readAsText(_this.blob);
           }*/
-          //2nd approach
+          // 2nd approach
 
         }, {
           key: "downloadAndRead",
-          value: function downloadAndRead(dropBoxUrl, event) {
+          value: function downloadAndRead(dropBoxUrl) {
             console.log('IN READ MODE. Reading file');
             dropBoxUrl = dropBoxUrl.replace("/private", "file:///private");
             console.log('dropboxurl=', dropBoxUrl);
@@ -360,17 +360,17 @@
                 console.log('hei1');
 
                 reader.onloadend = function (encodedFile) {
-                  console.log('hei2');
-                  var src = encodedFile.target.result;
-                  console.log('src1= ', src);
-                  src = src.split("base64,");
-                  console.log('src2= ', src);
-                  var contentAsBase64EncodedString = src[1];
-                  console.log('contentAsBase64EncodedString= ', contentAsBase64EncodedString);
+                  console.log('hei2 reader.result=  ', reader.result); // let src = encodedFile.target.result;
+                  // console.log('src1= ', src);
+                  // src = src.split('base64,');
+                  // console.log('src2= ', src);
+                  // const contentAsBase64EncodedString = src[1];
+                  // console.log('contentAsBase64EncodedString= ', 
+                  // contentAsBase64EncodedString);
                 };
 
                 console.log('hei3');
-                reader.readAsDataURL(file);
+                reader.readAsBinaryString(file);
                 console.log('hei4');
               });
             })["catch"](function (error) {

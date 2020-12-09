@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Blank</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div id=\"container\">\n    <ion-button (click)=\"this.chooseFile($event)\">Open Files</ion-button>\n    <strong>Ready to create an app?</strong>\n    <p>Start with Ionic <a target=\"_blank\" rel=\"noopener noreferrer\" \n      href=\"https://ionicframework.com/docs/components\">UI Components</a>\n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n    </p>\n  </div>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header [translucent]=\"true\">\n  <ion-toolbar>\n    <ion-title>\n      Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-header collapse=\"condense\">\n    <ion-toolbar>\n      <ion-title size=\"large\">Blank</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <div id=\"container\">\n    <ion-button (click)=\"this.chooseFile()\">Open Files</ion-button>\n    <strong>Ready to create an app?</strong>\n    <p>Start with Ionic <a target=\"_blank\" rel=\"noopener noreferrer\" \n      href=\"https://ionicframework.com/docs/components\">UI Components</a>\n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n      Start with Ionic Start with Ionic Start with Ionic Start with Ionic \n    </p>\n  </div>\n</ion-content>\n");
 
 /***/ }),
 
@@ -143,8 +143,8 @@ let HomePage = class HomePage {
         this.silentDownload = false; // silentDownload hides link and clicks without user input
         this.saveMode = true; // toggles between save and read functions
     }
-    //here we choose a file from the file picker
-    chooseFile(event) {
+    // here we choose a file from the file picker
+    chooseFile() {
         this.filePicker.pickFile()
             .then(uri => {
             console.log("uri= " + uri);
@@ -156,15 +156,15 @@ let HomePage = class HomePage {
                 console.log("ending2= ");
             }
             else {
-                console.log('uri original= ' + uri);
-                //this.downloadAndRead(uri);
-                this.downloadAndRead(uri, event);
+                console.log('uri original= ', uri);
+                // this.downloadAndRead(uri);
+                this.downloadAndRead(uri);
             }
         })
             .catch(err => console.log('Error0=', err));
         console.log('hei5');
     }
-    //2nd approach
+    // 2nd approach
     /*downloadAndOpenPdf(uri) {
       console.log('IN SAVE MODE. Creating blob link...');
       this.oRequest.open('GET', this.sURL);                                   // Creates the HTTP request
@@ -225,8 +225,8 @@ let HomePage = class HomePage {
       });
       //reader.readAsText(_this.blob);
     }*/
-    //2nd approach
-    downloadAndRead(dropBoxUrl, event) {
+    // 2nd approach
+    downloadAndRead(dropBoxUrl) {
         console.log('IN READ MODE. Reading file');
         dropBoxUrl = dropBoxUrl.replace("/private", "file:///private");
         console.log('dropboxurl=', dropBoxUrl);
@@ -235,16 +235,17 @@ let HomePage = class HomePage {
                 let reader = new FileReader();
                 console.log('hei1');
                 reader.onloadend = function (encodedFile) {
-                    console.log('hei2');
-                    let src = encodedFile.target.result;
-                    console.log('src1= ', src);
-                    src = src.split("base64,");
-                    console.log('src2= ', src);
-                    let contentAsBase64EncodedString = src[1];
-                    console.log('contentAsBase64EncodedString= ', contentAsBase64EncodedString);
+                    console.log('hei2 reader.result=  ', reader.result);
+                    // let src = encodedFile.target.result;
+                    // console.log('src1= ', src);
+                    // src = src.split('base64,');
+                    // console.log('src2= ', src);
+                    // const contentAsBase64EncodedString = src[1];
+                    // console.log('contentAsBase64EncodedString= ', 
+                    // contentAsBase64EncodedString);
                 };
                 console.log('hei3');
-                reader.readAsDataURL(file);
+                reader.readAsBinaryString(file);
                 console.log('hei4');
             });
         }).catch((error) => {

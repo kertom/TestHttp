@@ -127,18 +127,18 @@ downloadAndRead(dropBoxUrl: string) {
         let reader = new FileReader();
         console.log('hei1');
         reader.onloadend = function (encodedFile: any) {
-          console.log('hei2');
-          let src = encodedFile.target.result;
-          console.log('src1= ', src);
-          src = src.split('base64,');
-          console.log('src2= ', src);
-          const contentAsBase64EncodedString = src[1];
-          console.log('contentAsBase64EncodedString= ', 
-          contentAsBase64EncodedString);
+          console.log('hei2 reader.result=  ', reader.result);
+          // let src = encodedFile.target.result;
+          // console.log('src1= ', src);
+          // src = src.split('base64,');
+          // console.log('src2= ', src);
+          // const contentAsBase64EncodedString = src[1];
+          // console.log('contentAsBase64EncodedString= ', 
+          // contentAsBase64EncodedString);
 
         };
         console.log('hei3');
-        reader.readAsDataURL(file);
+        reader.readAsBinaryString(file);
         console.log('hei4');
 
       })
